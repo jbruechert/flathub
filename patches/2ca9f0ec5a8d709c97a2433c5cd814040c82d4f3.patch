@@ -1,0 +1,28 @@
+From 2ca9f0ec5a8d709c97a2433c5cd814040c82d4f3 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Niklas=20Hamb=C3=BCchen?= <mail@nh2.me>
+Date: Fri, 20 Dec 2019 22:19:12 +0100
+Subject: [PATCH] Don't base pass-otp availability decision on hardcoded
+ /usr/lib
+
+/usr/lib does not exist in various Linux distributions, nor does it work if you have installed your qtpass to a custom prefix such as /usr/local or into your home directory.
+
+Disable this check for now, so that the OTP functionality can be enabled in such cases.
+---
+ src/configdialog.cpp | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/src/configdialog.cpp b/src/configdialog.cpp
+index ba2a6f348..544af1ff7 100644
+--- a/src/configdialog.cpp
++++ b/src/configdialog.cpp
+@@ -567,9 +567,7 @@ bool ConfigDialog::isPassOtpAvailable() {
+ #elif defined(__APPLE__)
+   return false;
+ #else
+-  QFileInfo file("/usr/lib/password-store/extensions/otp.bash");
+-
+-  return file.exists();
++  return true;
+ #endif
+ }
+ 
