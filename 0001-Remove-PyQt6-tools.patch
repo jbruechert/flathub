@@ -1,0 +1,24 @@
+From f0cd6f7f5ce5d336aa20044f7e95ec0f59c9e6cf Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonah=20Br=C3=BCchert?= <jbb@kaidan.im>
+Date: Sat, 14 Oct 2023 17:35:06 +0200
+Subject: [PATCH] Remove PyQt6-tools
+
+---
+ pyproject.toml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 816c701..a2aad82 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -22,7 +22,6 @@ dependencies = [
+     "python-barcode>=0.13.1,<1",
+     "pyusb",
+     "PyQt6",
+-    "PyQt6-tools",
+ ]
+ classifiers = [
+     "Operating System :: POSIX :: Linux",
+-- 
+2.42.0
+

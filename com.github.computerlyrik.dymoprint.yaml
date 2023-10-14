@@ -1,0 +1,27 @@
+app-id: com.github.computerlyrik.dymoprint
+runtime: org.kde.Platform
+runtime-version: '6.5'
+sdk: org.kde.Sdk
+base: com.riverbankcomputing.PyQt.BaseApp
+base-version: '6.5'
+command: dymoprint_gui
+cleanup-commands:
+  - /app/cleanup-BaseApp.sh
+build-options:
+  env:
+    - BASEAPP_REMOVE_WEBENGINE=1
+finish-args:
+  - --device=all
+  - --socket=wayland
+  - --socket=fallback-x11
+modules:
+  - python3-requirements.json
+  - name: dymoprint
+    sources:
+      - type: git
+        url: https://github.com/computerlyrik/dymoprint
+      - type: patch
+        path: 0001-Remove-PyQt6-tools.patch
+    buildsystem: simple
+    build-commands:
+      - pip install . --no-index --no-build-isolation --prefix /app
